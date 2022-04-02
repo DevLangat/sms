@@ -28,15 +28,21 @@ class IsSmsSent
      */
     public function handle(SendingSms $event)
     {
-        Log::info("message");
+     
+        Log::info($event->data);
+      $sms=$event->data;
+        Log::info($sms['phone']);
         DB::table('s_m_s')->insert([
-            'phone'=>$event->phone
+            'phone'=>$sms['phone'],
+            'message'=>$sms['message'],
+            'rType'=>$sms['rType'],
+            'status'=>$sms['status'],
         ]);
       
         return response()->json([
             'success'=>true,
             'message'=>'Sms Added'
         ]);
-        Log::info("message");
+        // Log::info("message");
     }
 }

@@ -37,8 +37,13 @@ class SMSController extends Controller
      */
     public function store(Request $request)
     {
-        event(new SendingSms($request->phone) );
-        Log::info($request->phone);
+       
+        $this->data['phone'] =$request->phone;
+        $this->data['message'] =$request->message;
+        $this->data['rType'] =$request->rType;
+        $this->data['status'] =$request->status;
+        event(new SendingSms($this->data) );
+      //  Log::info($this->data);
         
     }
 

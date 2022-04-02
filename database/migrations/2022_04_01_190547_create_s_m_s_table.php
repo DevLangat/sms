@@ -16,6 +16,9 @@ class CreateSMSTable extends Migration
         Schema::create('s_m_s', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('phone');
+            $table->string('rType');
+            $table->string('message');
+            $table->string('status');
             $table->timestamps();
         });
     }
